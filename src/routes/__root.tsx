@@ -84,8 +84,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:site", content: "@Lovable" },
       { name: "twitter:title", content: "Lumen — AI Workplace Productivity Assistant" },
       { name: "twitter:description", content: "Automate emails, summarize meetings, plan your day, and chat with an AI workplace assistant." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9ebe4338-499c-4c68-ae67-a3b47d8ec118/id-preview-70035d1c--73af2e22-759e-40f8-acee-e8635c806008.lovable.app-1778586467414.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/9ebe4338-499c-4c68-ae67-a3b47d8ec118/id-preview-70035d1c--73af2e22-759e-40f8-acee-e8635c806008.lovable.app-1778586467414.png" },
+      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/ad45e881-4446-4939-8d72-6d87074d794a" },
+      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/attachments/og-images/ad45e881-4446-4939-8d72-6d87074d794a" },
     ],
     links: [
       {
