@@ -1,6 +1,12 @@
 import { ShieldCheck } from "lucide-react";
 
-export function AiDisclaimer({ className = "" }: { className?: string }) {
+export function AiDisclaimer({
+  className = "",
+  text = "AI output may be inaccurate. Review before sending, sharing, or acting on it. Avoid sharing sensitive or confidential information.",
+}: {
+  className?: string;
+  text?: string;
+}) {
   return (
     <div
       className={
@@ -10,9 +16,7 @@ export function AiDisclaimer({ className = "" }: { className?: string }) {
     >
       <ShieldCheck className="h-4 w-4 text-primary shrink-0 mt-0.5" />
       <p>
-        <span className="font-medium text-foreground">Responsible AI:</span> AI output may be
-        inaccurate. Review before sending, sharing, or acting on it. Avoid sharing sensitive or
-        confidential information.
+        <span className="font-medium text-foreground">Responsible AI:</span> {text}
       </p>
     </div>
   );

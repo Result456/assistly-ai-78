@@ -136,7 +136,7 @@ function Home() {
         </div>
 
         <div className="mt-8">
-          <AiDisclaimer />
+          <AiDisclaimer text="AI-generated content may contain inaccuracies. Users should verify outputs before professional use." />
         </div>
       </section>
     </div>
