@@ -12,7 +12,7 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/settings")({
   head: () => ({
     meta: [
-      { title: "Settings — Lumen" },
+      { title: "Settings — Result" },
       { name: "description", content: "Customize your AI workplace assistant." },
     ],
   }),
@@ -30,7 +30,7 @@ function SettingsPage() {
       <PageHeader
         eyebrow="Account"
         title="Settings"
-        description="Personalize Lumen so it understands your role and preferences."
+        description="Personalize Result so it understands your role and preferences."
         icon={SettingsIcon}
       />
 
@@ -64,7 +64,7 @@ function SettingsPage() {
 
       <Section title="Responsible AI" icon={ShieldCheck}>
         <p className="text-sm text-muted-foreground">
-          Lumen uses AI models that may produce inaccurate or biased output. Always review AI
+          Result uses AI models that may produce inaccurate or biased output. Always review AI
           suggestions before sending or acting on them, and avoid sharing sensitive personal,
           financial, or confidential business information.
         </p>

@@ -14,7 +14,7 @@ import { generateAi } from "@/lib/ai-client";
 export const Route = createFileRoute("/planner")({
   head: () => ({
     meta: [
-      { title: "AI Task Planner — Lumen" },
+      { title: "AI Task Planner — Result" },
       { name: "description", content: "Generate prioritized daily schedules with productivity tips." },
     ],
   }),
@@ -66,7 +66,7 @@ Numbered list (1 = highest). Brief reason for each.
       <PageHeader
         eyebrow="Planning"
         title="AI Task Planner"
-        description="List today's tasks — Lumen prioritizes them and builds a focused schedule."
+        description="List today's tasks — Result prioritizes them and builds a focused schedule."
         icon={CalendarCheck}
       />
 

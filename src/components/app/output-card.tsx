@@ -111,7 +111,7 @@ function LoadingSkeleton() {
         <span
           className="bg-clip-text text-transparent bg-[linear-gradient(90deg,oklch(0.5_0.15_310),oklch(0.7_0.22_350),oklch(0.5_0.15_310))] bg-[length:200%_100%] animate-shimmer"
         >
-          Lumen is thinking…
+          Result is thinking…
         </span>
       </div>
       {[80, 95, 70, 88, 60].map((w, i) => (

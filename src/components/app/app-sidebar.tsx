@@ -46,7 +46,7 @@ export function AppSidebar() {
           </div>
           {!collapsed && (
             <div className="flex flex-col leading-tight">
-              <span className="font-display font-bold text-base tracking-tight">Lumen</span>
+              <span className="font-display font-bold text-base tracking-tight">Result</span>
               <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
                 Workplace AI
               </span>

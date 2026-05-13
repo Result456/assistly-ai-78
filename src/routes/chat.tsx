@@ -19,7 +19,7 @@ import { generateChatReply } from "@/lib/ai-client";
 export const Route = createFileRoute("/chat")({
   head: () => ({
     meta: [
-      { title: "AI Chatbot Assistant — Lumen" },
+      { title: "AI Chatbot Assistant — Result" },
       { name: "description", content: "Chat with your AI workplace assistant." },
     ],
   }),

@@ -15,7 +15,7 @@ import { AiDisclaimer } from "@/components/app/ai-disclaimer";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Lumen — AI Workplace Productivity Assistant" },
+      { title: "Result — AI Workplace Productivity Assistant" },
       {
         name: "description",
         content:
@@ -69,7 +69,7 @@ function Home() {
             <span className="text-gradient-brand">faster than ever.</span>
           </h1>
           <p className="mt-4 text-lg text-muted-foreground max-w-2xl animate-slide-up">
-            Lumen drafts emails, summarizes meetings, plans your day, and answers workplace
+            Result drafts emails, summarizes meetings, plans your day, and answers workplace
             questions — so you can focus on what matters.
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
