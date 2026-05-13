@@ -2,6 +2,7 @@ import "@tanstack/react-start";
 import { createFileRoute } from "@tanstack/react-router";
 import { generateText } from "ai";
 import { createLovableAiGatewayProvider } from "@/lib/ai-gateway";
+import { getLovableApiKey } from "@/lib/server-env";
 
 export const Route = createFileRoute("/api/generate")({
   server: {
@@ -13,7 +14,7 @@ export const Route = createFileRoute("/api/generate")({
             prompt?: string;
           };
           if (!prompt) return new Response("Missing prompt", { status: 400 });
-          const key = process.env.LOVABLE_API_KEY;
+          const key = await getLovableApiKey();
           if (!key) return new Response("Missing LOVABLE_API_KEY", { status: 500 });
           const gateway = createLovableAiGatewayProvider(key);
           const { text } = await generateText({
