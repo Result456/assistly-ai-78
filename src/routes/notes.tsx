@@ -13,7 +13,7 @@ import { generateAi } from "@/lib/ai-client";
 export const Route = createFileRoute("/notes")({
   head: () => ({
     meta: [
-      { title: "Meeting Notes Summarizer — Lumen" },
+      { title: "Meeting Notes Summarizer — Result" },
       { name: "description", content: "Summarize meetings into action items, decisions, and deadlines." },
     ],
   }),
@@ -67,7 +67,7 @@ ${notes}`,
       <PageHeader
         eyebrow="Meetings"
         title="Notes Summarizer"
-        description="Paste raw meeting notes — Lumen extracts action items, decisions, and deadlines."
+        description="Paste raw meeting notes — Result extracts action items, decisions, and deadlines."
         icon={FileText}
       />
 

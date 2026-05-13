@@ -21,7 +21,7 @@ import { generateAi } from "@/lib/ai-client";
 export const Route = createFileRoute("/email")({
   head: () => ({
     meta: [
-      { title: "Smart Email Generator — Lumen" },
+      { title: "Smart Email Generator — Result" },
       { name: "description", content: "Generate professional emails in any tone." },
     ],
   }),
@@ -89,7 +89,7 @@ Write a complete, ready-to-send email.`,
       <PageHeader
         eyebrow="Communication"
         title="Smart Email Generator"
-        description="Describe the email and pick a tone. Lumen drafts a polished message you can edit and send."
+        description="Describe the email and pick a tone. Result drafts a polished message you can edit and send."
         icon={Mail}
       />
 

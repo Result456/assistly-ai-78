@@ -23,7 +23,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </header>
           <main className="flex-1 overflow-x-hidden">{children}</main>
           <footer className="border-t border-border/60 px-6 py-5 text-xs text-muted-foreground flex flex-col sm:flex-row gap-2 justify-between">
-            <div>© {new Date().getFullYear()} Lumen Workplace AI. Built for professionals.</div>
+            <div>© {new Date().getFullYear()} Result Workplace AI. Built for professionals.</div>
             <div className="flex gap-4">
               <span>Privacy</span><span>Terms</span><span>Responsible AI</span>
             </div>
