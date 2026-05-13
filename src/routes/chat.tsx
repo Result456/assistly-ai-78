@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { useChat } from "@ai-sdk/react";
-import { DefaultChatTransport } from "ai";
 import {
   MessagesSquare,
   Send,
@@ -16,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { PageHeader } from "@/components/app/page-header";
 import { AiDisclaimer } from "@/components/app/ai-disclaimer";
+import { generateChatReply } from "@/lib/ai-client";
 
 export const Route = createFileRoute("/chat")({
   head: () => ({
@@ -35,14 +34,14 @@ const SUGGESTIONS = [
 ];
 
 function ChatPage() {
-  const { messages, sendMessage, status, stop } = useChat({
-    transport: new DefaultChatTransport({ api: "/api/chat" }),
-    onError: (e) => toast.error(e.message || "Chat failed"),
-  });
+  type Msg = { id: string; role: "user" | "assistant"; text: string };
+  const [messages, setMessages] = useState<Msg[]>([]);
+  const [status, setStatus] = useState<"idle" | "submitted">("idle");
   const [input, setInput] = useState("");
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const scrollerRef = useRef<HTMLDivElement>(null);
-  const isLoading = status === "submitted" || status === "streaming";
+  const isLoading = status === "submitted";
+  const cancelRef = useRef(false);
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -57,11 +56,28 @@ function ChatPage() {
     if (el) el.scrollTop = el.scrollHeight;
   }, [messages, status]);
 
-  function send(text?: string) {
+  async function send(text?: string) {
     const t = (text ?? input).trim();
     if (!t || isLoading) return;
-    sendMessage({ text: t });
+    const userMsg: Msg = { id: `u-${Date.now()}`, role: "user", text: t };
+    setMessages((m) => [...m, userMsg]);
     setInput("");
+    setStatus("submitted");
+    cancelRef.current = false;
+    try {
+      const reply = await generateChatReply(t);
+      if (cancelRef.current) return;
+      setMessages((m) => [...m, { id: `a-${Date.now()}`, role: "assistant", text: reply }]);
+    } catch (e) {
+      toast.error(e instanceof Error ? e.message : "Chat failed");
+    } finally {
+      setStatus("idle");
+    }
+  }
+
+  function stop() {
+    cancelRef.current = true;
+    setStatus("idle");
   }
 
   return (
@@ -81,7 +97,7 @@ function ChatPage() {
             <div className="space-y-6 max-w-3xl mx-auto">
               {messages.map((m) => (
                 <Bubble key={m.id} role={m.role}>
-                  <MessageBody parts={m.parts} />
+                  <MessageBody text={m.text} />
                 </Bubble>
               ))}
               {status === "submitted" && (
@@ -138,10 +154,7 @@ function ChatPage() {
   );
 }
 
-function MessageBody({ parts }: { parts: Array<{ type: string; text?: string }> }) {
-  const text = parts
-    .map((p) => (p.type === "text" && typeof p.text === "string" ? p.text : ""))
-    .join("");
+function MessageBody({ text }: { text: string }) {
   return (
     <div className="prose prose-sm max-w-none dark:prose-invert prose-p:leading-relaxed prose-headings:font-display">
       <ReactMarkdown>{text}</ReactMarkdown>
