@@ -2,6 +2,7 @@ import "@tanstack/react-start";
 import { createFileRoute } from "@tanstack/react-router";
 import { generateText } from "ai";
 import { createLovableAiGatewayProvider } from "@/lib/ai-gateway";
+import { getLovableApiKey } from "@/lib/server-env";
 
 export const Route = createFileRoute("/api/generate")({
   server: {
