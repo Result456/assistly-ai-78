@@ -226,6 +226,111 @@ function Home() {
         </div>
       </section>
 
+      {/* Greeting + Dashboard Widgets */}
+      <section className="px-4 md:px-8 max-w-6xl mx-auto pb-2">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-5 md:p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+        >
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-widest text-fuchsia-400">Welcome back</div>
+            <h2 className="mt-1 text-2xl md:text-3xl font-bold tracking-tight">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-300 via-pink-300 to-purple-300">
+                Good Morning, Result
+              </span>
+            </h2>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Ready to boost productivity today? You've saved 2h 14m this week.
+            </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="rounded-lg border border-white/10 bg-black/20 px-3 py-2 text-xs">
+              <div className="text-muted-foreground">Streak</div>
+              <div className="font-semibold text-foreground">12 days 🔥</div>
+            </div>
+            <div className="rounded-lg border border-white/10 bg-black/20 px-3 py-2 text-xs">
+              <div className="text-muted-foreground">Focus</div>
+              <div className="font-semibold text-foreground">94%</div>
+            </div>
+          </div>
+        </motion.div>
+
+        <div className="mt-5 grid grid-cols-2 lg:grid-cols-5 gap-3">
+          {[
+            { label: "Emails Generated", value: "24", icon: Mail, trend: "+12%" },
+            { label: "Tasks Completed", value: "18", icon: CheckCircle2, trend: "+8%" },
+            { label: "Notes Summarized", value: "9", icon: FileText, trend: "+3" },
+            { label: "Productivity", value: "94%", icon: TrendingUp, trend: "+5%" },
+            { label: "AI Activity", value: "147", icon: Brain, trend: "+22%" },
+          ].map((w, i) => (
+            <motion.div
+              key={w.label}
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.06, duration: 0.4 }}
+              whileHover={{ y: -4 }}
+              className="rounded-xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-4 hover:border-fuchsia-400/40 hover:shadow-glow transition-colors"
+            >
+              <div className="flex items-center justify-between">
+                <div
+                  className="h-7 w-7 rounded-md grid place-items-center"
+                  style={{ backgroundImage: "linear-gradient(135deg, oklch(0.6 0.28 305), oklch(0.7 0.28 350))" }}
+                >
+                  <w.icon className="h-3.5 w-3.5 text-white" />
+                </div>
+                <span className="text-[10px] font-semibold text-emerald-400">{w.trend}</span>
+              </div>
+              <div className="mt-3 text-2xl font-bold tracking-tight">{w.value}</div>
+              <div className="text-[11px] text-muted-foreground mt-0.5">{w.label}</div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Quick Actions */}
+      <section className="px-4 md:px-8 max-w-6xl mx-auto py-8">
+        <div className="flex items-end justify-between mb-4">
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-widest text-fuchsia-400">Quick actions</div>
+            <h2 className="mt-1 text-xl md:text-2xl font-bold tracking-tight">Jump back in</h2>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+          {[
+            { to: "/email", label: "Generate Email", icon: Mail },
+            { to: "/notes", label: "Summarize Notes", icon: FileText },
+            { to: "/planner", label: "Create Task Plan", icon: CalendarCheck },
+            { to: "/chat", label: "Open AI Chat", icon: MessagesSquare },
+          ].map((a, i) => (
+            <motion.div
+              key={a.to}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05, duration: 0.4 }}
+            >
+              <Link
+                to={a.to}
+                className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] backdrop-blur-xl px-4 py-3 hover:border-fuchsia-400/40 hover:bg-white/[0.07] transition"
+              >
+                <div
+                  className="h-8 w-8 rounded-md grid place-items-center shadow-glow"
+                  style={{ backgroundImage: "linear-gradient(135deg, oklch(0.6 0.28 305), oklch(0.7 0.28 350))" }}
+                >
+                  <a.icon className="h-4 w-4 text-white" />
+                </div>
+                <span className="text-sm font-medium flex-1">{a.label}</span>
+                <ArrowRight className="h-3.5 w-3.5 text-fuchsia-300 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       {/* Features */}
       <section id="features" className="px-4 md:px-8 max-w-6xl mx-auto py-10 md:py-12">
         <div className="flex items-end justify-between mb-6">
