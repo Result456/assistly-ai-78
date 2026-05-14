@@ -69,7 +69,7 @@ function Counter({ to, suffix }: { to: number; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
   const mv = useMotionValue(0);
-  const spring = useSpring(mv, { duration: 1800, bounce: 0 });
+  const spring = useSpring(mv, { stiffness: 60, damping: 20, mass: 1 });
 
   useEffect(() => {
     if (inView) mv.set(to);
