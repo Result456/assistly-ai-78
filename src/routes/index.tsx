@@ -142,30 +142,30 @@ function Home() {
           initial={{ opacity: 0, scale: 0.94, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-6 text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight max-w-5xl leading-[1.05]"
+          className="mt-6 mx-auto text-center text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight max-w-4xl leading-[1.2]"
         >
-          Welcome to{" "}
+          Work smarter, not harder —{" "}
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-400 via-pink-400 to-purple-400">
-            AI Workplace
+            let AI handle the heavy lifting
           </span>{" "}
-          Productivity Assistant
+          while you focus on what truly matters.
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25, duration: 0.6 }}
-          className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl"
+          className="mt-6 mx-auto text-center text-base md:text-lg text-muted-foreground/80 max-w-2xl leading-relaxed"
         >
-          Automate workplace tasks using intelligent AI tools — drafted emails,
-          smart summaries, and a co-pilot that thinks alongside you.
+          Empower your work with AI that handles the busywork — polished emails,
+          clear summaries, and a co-pilot that helps you think smarter.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.45, duration: 0.6 }}
-          className="mt-8 flex flex-wrap gap-3"
+          className="mt-8 flex flex-wrap justify-center gap-3"
         >
           <Link
             to="/email"
