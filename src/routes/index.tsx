@@ -9,7 +9,6 @@ import {
   ArrowRight,
   Sparkles,
   Zap,
-  Clock,
   Bot,
   BarChart3,
   Activity,
@@ -19,7 +18,6 @@ import {
   TrendingUp,
   CheckCircle2,
   Brain,
-  Users,
 } from "lucide-react";
 import {
   ResponsiveContainer,
