@@ -102,10 +102,3 @@ Fully optimized for:
 
 ---
 
-## ⚙️ Installation
-
-```bash
-git clone <your-repository-url>
-cd ai-workplace-productivity-assistant
-npm install
-npm run dev
