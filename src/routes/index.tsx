@@ -16,7 +16,20 @@ import {
   Cpu,
   Workflow,
   ShieldCheck,
+  TrendingUp,
+  CheckCircle2,
+  Brain,
+  Users,
 } from "lucide-react";
+import {
+  ResponsiveContainer,
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+} from "recharts";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -142,11 +155,11 @@ function Home() {
           initial={{ opacity: 0, scale: 0.94, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-5 mx-auto text-center text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight max-w-3xl leading-[1.2]"
+          className="mt-5 mx-auto text-center text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight max-w-4xl leading-[1.15]"
         >
-          Work smarter, not harder —{" "}
+          Work smarter, not harder.{" "}
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-400 via-pink-400 to-purple-400">
-            let AI handle the heavy lifting
+            Let AI handle the heavy lifting
           </span>{" "}
           while you focus on what truly matters.
         </motion.h1>
@@ -155,10 +168,11 @@ function Home() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25, duration: 0.6 }}
-          className="mt-4 mx-auto text-center text-sm md:text-base text-muted-foreground/80 max-w-xl leading-relaxed"
+          className="mt-4 mx-auto text-center text-sm md:text-base text-muted-foreground/80 max-w-2xl leading-relaxed"
         >
-          Empower your work with AI that handles the busywork — polished emails,
-          clear summaries, and a co-pilot that helps you think smarter.
+          Empower your work with AI that handles the busywork. Create polished
+          emails, clear summaries, and work with a smart AI co-pilot that helps
+          you think smarter.
         </motion.p>
 
         <motion.div
