@@ -407,6 +407,79 @@ function Home() {
         </div>
       </section>
 
+      {/* Productivity Chart */}
+      <section className="px-4 md:px-8 max-w-6xl mx-auto py-8">
+        <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-5 md:p-6">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <div className="text-xs font-semibold uppercase tracking-widest text-fuchsia-400">Insights</div>
+              <h2 className="mt-1 text-xl md:text-2xl font-bold tracking-tight">Weekly productivity</h2>
+            </div>
+            <div className="hidden sm:flex items-center gap-2 text-xs text-muted-foreground">
+              <span className="inline-flex items-center gap-1.5">
+                <span className="h-2 w-2 rounded-full bg-fuchsia-400" /> Tasks
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <span className="h-2 w-2 rounded-full bg-pink-400" /> AI usage
+              </span>
+            </div>
+          </div>
+          <div className="h-56 md:h-64 w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart
+                data={[
+                  { day: "Mon", tasks: 12, ai: 8 },
+                  { day: "Tue", tasks: 18, ai: 14 },
+                  { day: "Wed", tasks: 14, ai: 11 },
+                  { day: "Thu", tasks: 22, ai: 19 },
+                  { day: "Fri", tasks: 28, ai: 24 },
+                  { day: "Sat", tasks: 16, ai: 12 },
+                  { day: "Sun", tasks: 20, ai: 18 },
+                ]}
+                margin={{ top: 8, right: 8, left: -16, bottom: 0 }}
+              >
+                <defs>
+                  <linearGradient id="gTasks" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="oklch(0.7 0.28 320)" stopOpacity={0.5} />
+                    <stop offset="100%" stopColor="oklch(0.7 0.28 320)" stopOpacity={0} />
+                  </linearGradient>
+                  <linearGradient id="gAi" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="oklch(0.75 0.28 350)" stopOpacity={0.5} />
+                    <stop offset="100%" stopColor="oklch(0.75 0.28 350)" stopOpacity={0} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                <XAxis dataKey="day" stroke="rgba(255,255,255,0.4)" fontSize={11} tickLine={false} axisLine={false} />
+                <YAxis stroke="rgba(255,255,255,0.4)" fontSize={11} tickLine={false} axisLine={false} />
+                <Tooltip
+                  contentStyle={{
+                    background: "rgba(10,10,20,0.9)",
+                    border: "1px solid rgba(255,255,255,0.1)",
+                    borderRadius: 8,
+                    fontSize: 12,
+                  }}
+                  labelStyle={{ color: "rgba(255,255,255,0.7)" }}
+                />
+                <Area
+                  type="monotone"
+                  dataKey="tasks"
+                  stroke="oklch(0.75 0.28 320)"
+                  strokeWidth={2}
+                  fill="url(#gTasks)"
+                />
+                <Area
+                  type="monotone"
+                  dataKey="ai"
+                  stroke="oklch(0.8 0.28 350)"
+                  strokeWidth={2}
+                  fill="url(#gAi)"
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      </section>
+
       {/* Dashboard preview */}
       <section className="px-4 md:px-8 max-w-6xl mx-auto py-10 md:py-14">
         <div className="text-center max-w-xl mx-auto mb-7">
