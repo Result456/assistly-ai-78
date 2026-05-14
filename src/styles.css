@@ -46,6 +46,9 @@
   --animate-fade-in: fade-in 0.4s ease-out;
   --animate-slide-up: slide-up 0.5s cubic-bezier(0.22, 1, 0.36, 1);
   --animate-shimmer: shimmer 2s linear infinite;
+  --animate-blob: blob 18s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-grid: grid-pan 20s linear infinite;
 
   @keyframes fade-in {
     from { opacity: 0; transform: translateY(6px); }
@@ -58,6 +61,19 @@
   @keyframes shimmer {
     0% { background-position: -200% 0; }
     100% { background-position: 200% 0; }
+  }
+  @keyframes blob {
+    0%, 100% { transform: translate(0,0) scale(1); }
+    33% { transform: translate(40px,-30px) scale(1.1); }
+    66% { transform: translate(-30px,20px) scale(0.95); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+  @keyframes grid-pan {
+    from { background-position: 0 0; }
+    to { background-position: 60px 60px; }
   }
 }
 
