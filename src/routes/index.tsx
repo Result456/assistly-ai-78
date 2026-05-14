@@ -9,14 +9,25 @@ import {
   ArrowRight,
   Sparkles,
   Zap,
-  Clock,
   Bot,
   BarChart3,
   Activity,
   Cpu,
   Workflow,
   ShieldCheck,
+  TrendingUp,
+  CheckCircle2,
+  Brain,
 } from "lucide-react";
+import {
+  ResponsiveContainer,
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  Tooltip,
+  CartesianGrid,
+} from "recharts";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -142,11 +153,11 @@ function Home() {
           initial={{ opacity: 0, scale: 0.94, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-5 mx-auto text-center text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight max-w-3xl leading-[1.2]"
+          className="mt-5 mx-auto text-center text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight max-w-4xl leading-[1.15]"
         >
-          Work smarter, not harder —{" "}
+          Work smarter, not harder.{" "}
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-400 via-pink-400 to-purple-400">
-            let AI handle the heavy lifting
+            Let AI handle the heavy lifting
           </span>{" "}
           while you focus on what truly matters.
         </motion.h1>
@@ -155,10 +166,11 @@ function Home() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25, duration: 0.6 }}
-          className="mt-4 mx-auto text-center text-sm md:text-base text-muted-foreground/80 max-w-xl leading-relaxed"
+          className="mt-4 mx-auto text-center text-sm md:text-base text-muted-foreground/80 max-w-2xl leading-relaxed"
         >
-          Empower your work with AI that handles the busywork — polished emails,
-          clear summaries, and a co-pilot that helps you think smarter.
+          Empower your work with AI that handles the busywork. Create polished
+          emails, clear summaries, and work with a smart AI co-pilot that helps
+          you think smarter.
         </motion.p>
 
         <motion.div
@@ -209,6 +221,111 @@ function Home() {
               <span className="text-foreground/90">Saved 32 mins today</span>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Greeting + Dashboard Widgets */}
+      <section className="px-4 md:px-8 max-w-6xl mx-auto pb-2">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-5 md:p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4"
+        >
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-widest text-fuchsia-400">Welcome back</div>
+            <h2 className="mt-1 text-2xl md:text-3xl font-bold tracking-tight">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-fuchsia-300 via-pink-300 to-purple-300">
+                Good Morning, Result
+              </span>
+            </h2>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Ready to boost productivity today? You've saved 2h 14m this week.
+            </p>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="rounded-lg border border-white/10 bg-black/20 px-3 py-2 text-xs">
+              <div className="text-muted-foreground">Streak</div>
+              <div className="font-semibold text-foreground">12 days 🔥</div>
+            </div>
+            <div className="rounded-lg border border-white/10 bg-black/20 px-3 py-2 text-xs">
+              <div className="text-muted-foreground">Focus</div>
+              <div className="font-semibold text-foreground">94%</div>
+            </div>
+          </div>
+        </motion.div>
+
+        <div className="mt-5 grid grid-cols-2 lg:grid-cols-5 gap-3">
+          {[
+            { label: "Emails Generated", value: "24", icon: Mail, trend: "+12%" },
+            { label: "Tasks Completed", value: "18", icon: CheckCircle2, trend: "+8%" },
+            { label: "Notes Summarized", value: "9", icon: FileText, trend: "+3" },
+            { label: "Productivity", value: "94%", icon: TrendingUp, trend: "+5%" },
+            { label: "AI Activity", value: "147", icon: Brain, trend: "+22%" },
+          ].map((w, i) => (
+            <motion.div
+              key={w.label}
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.06, duration: 0.4 }}
+              whileHover={{ y: -4 }}
+              className="rounded-xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-4 hover:border-fuchsia-400/40 hover:shadow-glow transition-colors"
+            >
+              <div className="flex items-center justify-between">
+                <div
+                  className="h-7 w-7 rounded-md grid place-items-center"
+                  style={{ backgroundImage: "linear-gradient(135deg, oklch(0.6 0.28 305), oklch(0.7 0.28 350))" }}
+                >
+                  <w.icon className="h-3.5 w-3.5 text-white" />
+                </div>
+                <span className="text-[10px] font-semibold text-emerald-400">{w.trend}</span>
+              </div>
+              <div className="mt-3 text-2xl font-bold tracking-tight">{w.value}</div>
+              <div className="text-[11px] text-muted-foreground mt-0.5">{w.label}</div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Quick Actions */}
+      <section className="px-4 md:px-8 max-w-6xl mx-auto py-8">
+        <div className="flex items-end justify-between mb-4">
+          <div>
+            <div className="text-xs font-semibold uppercase tracking-widest text-fuchsia-400">Quick actions</div>
+            <h2 className="mt-1 text-xl md:text-2xl font-bold tracking-tight">Jump back in</h2>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+          {[
+            { to: "/email", label: "Generate Email", icon: Mail },
+            { to: "/notes", label: "Summarize Notes", icon: FileText },
+            { to: "/planner", label: "Create Task Plan", icon: CalendarCheck },
+            { to: "/chat", label: "Open AI Chat", icon: MessagesSquare },
+          ].map((a, i) => (
+            <motion.div
+              key={a.to}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05, duration: 0.4 }}
+            >
+              <Link
+                to={a.to}
+                className="group flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.04] backdrop-blur-xl px-4 py-3 hover:border-fuchsia-400/40 hover:bg-white/[0.07] transition"
+              >
+                <div
+                  className="h-8 w-8 rounded-md grid place-items-center shadow-glow"
+                  style={{ backgroundImage: "linear-gradient(135deg, oklch(0.6 0.28 305), oklch(0.7 0.28 350))" }}
+                >
+                  <a.icon className="h-4 w-4 text-white" />
+                </div>
+                <span className="text-sm font-medium flex-1">{a.label}</span>
+                <ArrowRight className="h-3.5 w-3.5 text-fuchsia-300 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </motion.div>
+          ))}
         </div>
       </section>
 
@@ -285,6 +402,79 @@ function Home() {
               <div className="mt-1 text-xs text-muted-foreground">{s.label}</div>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      {/* Productivity Chart */}
+      <section className="px-4 md:px-8 max-w-6xl mx-auto py-8">
+        <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-xl p-5 md:p-6">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <div className="text-xs font-semibold uppercase tracking-widest text-fuchsia-400">Insights</div>
+              <h2 className="mt-1 text-xl md:text-2xl font-bold tracking-tight">Weekly productivity</h2>
+            </div>
+            <div className="hidden sm:flex items-center gap-2 text-xs text-muted-foreground">
+              <span className="inline-flex items-center gap-1.5">
+                <span className="h-2 w-2 rounded-full bg-fuchsia-400" /> Tasks
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <span className="h-2 w-2 rounded-full bg-pink-400" /> AI usage
+              </span>
+            </div>
+          </div>
+          <div className="h-56 md:h-64 w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart
+                data={[
+                  { day: "Mon", tasks: 12, ai: 8 },
+                  { day: "Tue", tasks: 18, ai: 14 },
+                  { day: "Wed", tasks: 14, ai: 11 },
+                  { day: "Thu", tasks: 22, ai: 19 },
+                  { day: "Fri", tasks: 28, ai: 24 },
+                  { day: "Sat", tasks: 16, ai: 12 },
+                  { day: "Sun", tasks: 20, ai: 18 },
+                ]}
+                margin={{ top: 8, right: 8, left: -16, bottom: 0 }}
+              >
+                <defs>
+                  <linearGradient id="gTasks" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="oklch(0.7 0.28 320)" stopOpacity={0.5} />
+                    <stop offset="100%" stopColor="oklch(0.7 0.28 320)" stopOpacity={0} />
+                  </linearGradient>
+                  <linearGradient id="gAi" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="oklch(0.75 0.28 350)" stopOpacity={0.5} />
+                    <stop offset="100%" stopColor="oklch(0.75 0.28 350)" stopOpacity={0} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.06)" />
+                <XAxis dataKey="day" stroke="rgba(255,255,255,0.4)" fontSize={11} tickLine={false} axisLine={false} />
+                <YAxis stroke="rgba(255,255,255,0.4)" fontSize={11} tickLine={false} axisLine={false} />
+                <Tooltip
+                  contentStyle={{
+                    background: "rgba(10,10,20,0.9)",
+                    border: "1px solid rgba(255,255,255,0.1)",
+                    borderRadius: 8,
+                    fontSize: 12,
+                  }}
+                  labelStyle={{ color: "rgba(255,255,255,0.7)" }}
+                />
+                <Area
+                  type="monotone"
+                  dataKey="tasks"
+                  stroke="oklch(0.75 0.28 320)"
+                  strokeWidth={2}
+                  fill="url(#gTasks)"
+                />
+                <Area
+                  type="monotone"
+                  dataKey="ai"
+                  stroke="oklch(0.8 0.28 350)"
+                  strokeWidth={2}
+                  fill="url(#gAi)"
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
         </div>
       </section>
 
